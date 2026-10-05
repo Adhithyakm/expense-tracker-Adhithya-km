@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+    <section id="welcome" class="page">
+        <h1>Want to know where your money goes?</h1>
+        <p>Track income and expenses in one place.</p>
+        <button class="arrow" id="startBtn">&rarr;</button>
+    </section>
+    <section id="dashboard" class="page" hidden>
+
+    <div class="topbar">
+        <h2>My money</h2>
+        <div>
+         <button class="smallBtn" id="filterBtn">Filter</button>
+         <button class="smallBtn" id="sortBtn">Sort</button>
+         <button class="smallBtn" id="chartBtn">Chart</button>
+            </div>
+        </div>
+
+        <div class="summary">
+            <div class="card income">
+                <span>Total income</span>
+                <strong id="totalIncome">0</strong>
+            </div>
+            <div class="card expense">
+                <span>Total expense</span>
+                <strong id="totalExpense">0</strong>
+            </div>
+            <div class="card">
+                <span>Balance</span>
+                <strong id="balance">0</strong>
+            </div>
+        </div>
+        <div id="filterBox" class="box" hidden>
+            <label>Type
+                <select id="typeFilter">
+                    <option value="all">All</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </label>
+
+            <fieldset>
+                <legend>Categories</legend>
+                <div id="catBoxes"></div>
+            </fieldset>
+
+            <button class="smallBtn" id="clearBtn">Clear filters</button>
+        </div>
+        <div id="sortBox" class="box" hidden>
+            <label>Sort by
+                <select id="sortSelect">
+                    <option value="date-desc">Newest</option>
+                    <option value="date-asc">Oldest</option>
+                    <option value="amt-desc">Highest amount</option>
+                    <option value="amt-asc">Lowest amount</option>
+                </select>
+            </label>
+
+            <label>Month
+                <input type="month" id="monthPick">
+            </label>
+        </div>
+
+        <ul id="list" class="list"></ul>
+        <p id="emptyMsg" class="emptyText" hidden></p>
+
+        <div class="bottomBar">
+            <button class="btn greenBtn" id="addIncomeBtn">Add income</button>
+            <button class="btn redBtn" id="addExpenseBtn">Add expense</button>
+        </div>
+
+    </section>
+    <section id="formPage" class="page" hidden>
+
+        <div class="topbar">
+            <button class="smallBtn" id="formBack">&larr; Back</button>
+            <h2 id="formTitle">Add expense</h2>
+        </div>
+
+        <form id="myForm" novalidate>
+          <label>Amount
+                <input type="number" id="amount" step="0.01" placeholder="0.00">
+                <small class="error" id="amountErr"></small>
+            </label>
+
+            <label>Category (pick one or type a new one)
+                <input type="text" id="category" list="catOptions" placeholder="e.g. Food">
+                <datalist id="catOptions"></datalist>
+                <small class="error" id="categoryErr"></small>
+            </label>
+
+            <label>Date
+                <div class="row">
+                    <input type="date" id="date">
+                    <button type="button" class="smallBtn" id="todayBtn">Today</button>
+                </div>
+                <small class="error" id="dateErr"></small>
+            </label>
+
+            <label>Note (optional)
+                <textarea id="note" rows="3"></textarea>
+                <small class="error" id="noteErr"></small>
+            </label>
+           <button type="submit" class="btn darkBtn">Done</button>
+
+        </form>
+     </section>
+
+    <section id="detailPage" class="page" hidden>
+        <div class="topbar">
+            <button class="smallBtn" id="detailBack">&larr; Back</button>
+            <h2>Details</h2>
+        </div>
+
+        <div id="detailBody" class="detail"></div>
+        <div class="row">
+            <button class="btn darkBtn" id="editBtn">Edit</button>
+            <button class="btn redBtn" id="deleteBtn">Delete</button>
+        </div>
+    </section>
+
+    <section id="chartPage" class="page" hidden>
+       <div class="topbar">
+            <button class="smallBtn" id="chartBack">&larr; Back</button>
+            <h2>Charts</h2>
+        </div>
+        <h3>Last 6 months</h3>
+        <div id="monthBars"></div>
+
+        <h3>Expenses by category</h3>
+        <label>Month
+            <input type="month" id="chartMonth">
+        </label>
+        <div class="pieBox">
+            <div id="pie" class="pie"></div>
+            <ul id="legend" class="legend"></ul>
+        </div>
+        <p id="pieEmpty" class="emptyText" hidden>No expenses in this month.</p>
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
